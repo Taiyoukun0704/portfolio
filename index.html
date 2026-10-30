@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio</title>
+
+<style>
+:root {
+  --text: #333333;
+  --muted: #333333;
+  --line: #e6e6e6;
+  --link: #2457a7;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--text);
+  font-family: Arial, "Noto Sans JP", Meiryo, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: min(900px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+header {
+  padding: 34px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+header .container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: .9rem;
+}
+
+nav a {
+  color: var(--muted);
+}
+
+.intro {
+  padding: 48px 0 42px;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.intro p {
+  max-width: 720px;
+  margin: 0;
+}
+
+section {
+  padding: 30px 0 36px;
+  border-top: 1px solid var(--line);
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 0 0 20px;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.bio-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px;
+  padding: 7px 0;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.skill {
+  border-left: 2px solid var(--line);
+  padding-left: 14px;
+}
+
+.skill p {
+  margin: 0;
+}
+
+.skill-item {
+  margin: 0 0 12px;
+}
+
+.skill-item:last-child {
+  margin-bottom: 0;
+}
+
+.skill-item strong {
+  display: block;
+  font-weight: 400;
+}
+
+.skill-item span {
+  display: block;
+  color: var(--muted);
+  font-size: .93rem;
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.project-gallery figure {
+  margin: 0;
+}
+
+.project-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+}
+
+.project-gallery figcaption {
+  margin-top: 7px;
+  font-size: .88rem;
+  color: var(--muted);
+}
+
+.video-demo {
+  margin-top: 24px;
+}
+
+.video-demo video {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  border: 1px solid var(--line);
+  background: #111;
+}
+
+@media (max-width: 520px) {
+  .project-gallery { grid-template-columns: 1fr; }
+}
+
+
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  margin: 0 0 42px;
+}
+
+.project-text {
+  width: 100%;
+}
+
+.project-images {
+  width: 100%;
+}
+
+.project .project-images img {
+  max-width: 453px;
+}
+
+.project-images img {
+  max-width: 453px;
+}
+
+.project:last-child {
+  margin-bottom: 0;
+}
+
+.project img {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.project .caption {
+  margin-top: 8px;
+  font-size: 0.88rem;
+}
+
+
+.project ul {
+  padding-left: 18px;
+}
+
+.conference-frame {
+  width: 100%;
+  height: 640px;
+  border: 1px solid var(--line);
+}
+
+.conference-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 12px 0 18px;
+}
+
+.journey {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+
+.journey-item {
+  border-top: 2px solid var(--text);
+  padding-top: 10px;
+}
+
+.journey-item .date {
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.journey-item img {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+}
+
+.achievement-photos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.achievement-photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  object-fit: contain;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 24px 0 36px;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* スマートフォン向けのレイアウト */
+@media (max-width: 680px) {
+  header .container {
+    display: block;
+  }
+
+  nav {
+    margin-top: 12px;
+    gap: 12px;
+  }
+
+  .intro {
+    padding-top: 32px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  .bio-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .journey {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .conference-frame {
+    height: 440px;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <a class="name" href="#top">Portfolio</a>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#research">Research</a>
+      <a href="#conference">Conference</a>
+      <a href="#english">English</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container" id="top">
+
+  <!-- プロフィール -->
+  <div class="intro">
+    <h1>市川 太陽 <span class="muted">/ Taiyo Ichikawa</span></h1>
+    <p class="subtitle">
+      Mechanical Engineering · Human Engineering
+    </p>
+  </div>
+
+  <!-- 学歴 -->
+  <section id="about">
+    <h2>Biography</h2>
+
+    <div class="bio-row">
+      <div class="muted">2019–2022</div>
+      <div>私立武南高等学校</div>
+    </div>
+
+    <div class="bio-row">
+      <div class="muted">2022–2026</div>
+      <div>東京理科大学 工学部機械工学科</div>
+    </div>
+
+    <div class="bio-row">
+      <div class="muted">2026–2028</div>
+      <div>東京科学大学大学院 工学院機械系（修了予定）</div>
+    </div>
+  </section>
+
+  <!-- スキル -->
+  <section id="skills">
+    <h2>Skills</h2>
+
+    <div class="skills-grid">
+      <div class="skill">
+        <h3>Software</h3>
+        <div class="skill-item"><strong>Python</strong></div>
+        <div class="skill-item"><strong>MATLAB</strong></div>
+        <div class="skill-item"><strong>C++</strong></div>
+      </div>
+
+      <div class="skill">
+        <h3>Hardware</h3>
+        <div class="skill-item"><strong>Arduino</strong></div>
+      </div>
+
+      <div class="skill">
+        <h3>Simulation</h3>
+        <div class="skill-item"><strong>Unity</strong></div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <!-- 研究内容 -->
+  <section id="research">
+    <h2>Research</h2>
+
+    <article class="project">
+      <div class="project-text">
+        <h3>学部研究｜カメラから計測した呼吸と心拍の信頼度を判定する</h3>
+        <p>
+          カメラを用いて心拍を、サーモカメラを用いて呼吸を計測する研究に取り組んだ。心拍は肌色の変化から、呼吸は鼻周辺の温度変化から計測した。また、こうしたカメラからの計測は、体の動きや環境ノイズなどの影響で精度が低下することがある。そこで、機械学習を活用し、計測した信号が信頼できるかどうかを自動で判定するシステムを構築した。さらに、将来的に患者の状態を自律的に検査するロボットの実現を目指し、台車ロボットの自律移動制御にも取り組んだ。
+        <a href="assets/trolly.m_robot.mp4" target="_blank" rel="noopener noreferrer">
+            台車ロボットの制御動画を見る ↗
+        </a>
+        </p>
+        <div class="project-gallery">
+          <figure>
+            <img src="assets/measurement.png" alt="呼吸・心拍信号の計測方法">
+            <figcaption>呼吸･心拍信号の計測方法</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/reliability.png" alt="信頼度判定モデル">
+            <figcaption>信頼度判定モデル</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-text">
+        <h3>修士研究｜快適さと覚醒を両立する気流刺激の設計</h3>
+        <p>
+          ドライバーの快適さを保ちながら眠気を抑える気流刺激の検討をしている。車内の温度を下げることで眠気を抑える方法が検討されてきたが、エネルギー消費が大きいという課題がある。そこで、脳に近く太い血管が通る首元に着目し、風によって「寒い」という感覚を与えることで、室温を下げずに温度低下と同様の覚醒効果が得られると仮説を立てた。実験では、快適さと眠気の抑制を両立できる可能性が示された。今後は、自律神経系の反応を測定し、気流刺激による覚醒効果のメカニズムを検証する。
+        </p>
+      </div>
+      <div class="project-images">
+        <img src="assets/airflow.png" alt="気流刺激を用いた運転時の快適性・覚醒研究">
+        <p class="caption">運転シミュレーター・生体指標・主観評価による実験</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- 学会発表 -->
+  <section id="conference">
+    <h2>Conference</h2>
+
+    <h3>自動車技術会 2026年秋季大会学術講演会</h3>
+
+    <p>
+      気流刺激に対する身体部位の感受特性に基づく
+      ドライバの覚醒維持方策
+    </p>
+
+    <p>発表日：2026年10月14日</p>
+
+    <p>
+      <a href="conference_slide.pdf"
+        target="_blank"
+        rel="noopener noreferrer">
+        発表スライド（PDF）を見る ↗
+      </a>
+    </p>
+
+    <p>
+      <a href="summarized_paper.pdf"
+        target="_blank"
+        rel="noopener noreferrer">
+        投稿論文（PDF）を見る ↗
+      </a>
+    </p>
+  </section>
+
+
+  <!-- 英語学習・活動 -->
+  <section id="english">
+    <h2>English</h2>
+
+    <div class="journey">
+      <div class="journey-item">
+        <div class="date">2022年4月</div>
+        <h3>TOEIC 595</h3>
+        <p class="journey-description">大学入学直後に受験</p>
+        <img
+          src="assets/TOEIC_before.jpg"
+          alt="TOEIC595点"
+        >
+      </div>
+
+      <div class="journey-item journey-achievements">
+        <div class="date">2024年3月</div>
+        <h3>TOEIC 935・英検1級</h3>
+        <p class="journey-description">2年間の学習の末、達成</p>
+        <div class="achievement-photos">
+          <img src="assets/TOEIC_after.jpg" alt="TOEIC935点の証明写真">
+          <img src="assets/Eiken.jpg" alt="英検1級の証明写真">
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="date">2025年4月–12月</div>
+        <h3>留学生支援</h3>
+        <p class="journey-description">留学生の学習支援や国際交流を行う団体に所属</p>
+        <img
+          src="assets/community.jpg"
+          alt="留学生との交流"
+        >
+      </div>
+
+      <div class="journey-item">
+        <div class="date">2026年2月–7月</div>
+        <h3>英検指導</h3>
+        <p class="journey-description">1対1で英語4技能と学習計画をサポートする個別指導と、生徒12人に英作文を指導する集団指導を担当</p>
+      </div>
+      <div class="journey-item">
+        <div class="date">2026年9月</div>
+        <h3>海外インターン</h3>
+        <p class="journey-description">ベトナムで約3週間、自動ブレーキシステムの動作テストを実施</p>
+        <img
+          src="assets/internship.jpg"
+          alt="海外インターン中の写真"
+        >
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">© 2026 Taiyo Ichikawa</div>
+</footer>
+</body>
+</html>
